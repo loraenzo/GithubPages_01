@@ -12,7 +12,7 @@
             margin: 20px;
         }
         #myChart {
-            width: 80rem;
+            width: 100%;
             height: 400px;
         }
     </style>
@@ -21,14 +21,17 @@
     <h1>Grafico dei Dati</h1>
     <label for="numRows">Numero di valori da mostrare:</label>
     <input type="number" id="numRows" value="100" min="1" max="5000" onchange="updateChart()">
+    <button id="refreshButton">Aggiorna Grafico</button>
     <canvas id="myChart"></canvas>
     
     <script>
         let chart;
 
         document.addEventListener("DOMContentLoaded", function() {
-            getLastNRowsFromGoogleSheet();
-            setInterval(getLastNRowsFromGoogleSheet, 60000); // ripeti ogni 60 secondi
+            // Disabilitato il refresh automatico
+            // getLastNRowsFromGoogleSheet();
+            // setInterval(getLastNRowsFromGoogleSheet, 1000); // ripeti ogni 1 secondo
+            document.getElementById('refreshButton').addEventListener('click', getLastNRowsFromGoogleSheet);
         });
 
         function getLastNRowsFromGoogleSheet() {
