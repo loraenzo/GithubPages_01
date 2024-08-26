@@ -29,7 +29,7 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             // Disabilitato il refresh automatico
-            // getLastNRowsFromGoogleSheet();
+            getLastNRowsFromGoogleSheet();
             // setInterval(getLastNRowsFromGoogleSheet, 1000); // ripeti ogni 1 secondo
             document.getElementById('refreshButton').addEventListener('click', getLastNRowsFromGoogleSheet);
         });
