@@ -3,6 +3,7 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="style.css">
      <title>Dati Excel</title>
  </head>
  <body>
@@ -16,21 +17,8 @@
     <div>LAeq [dBA] 30'</div>
     </br>     
     <div id="min30">0</div>
-    <div> </div>
      
  </body>
- <style>
-      body {
-          font-family: Arial, sans-serif;
-          color: white;
-          text-align: center;
-          font-size: 50px;
-          background-color: black;
-          margin: 0;
-          padding: 0;
-      }
-     
-  </style>
 
 
   <script>
@@ -42,11 +30,12 @@
     function getLastNRowsFromGoogleSheet() {
       //const url = `https://docs.google.com/spreadsheets/d/1-4rdXZ7kTRsVGQJ2H4JChhEl4PlmJE42/gviz/tq?tqx=responseHandler:myCallback`;
       //questo link sopra è inutile, perché fa la media degli ultimi 1, 10 o 30 valori per mostrare i dati. Peccato che sia il file dove vengono già salvati i LAeq ogni 10 min
-      //O meglio, andrebbe bene se volessi mostrare solo il LAeq ogni 10 o 30 minutoi, ma dovrei ricordarmi di modificare la parte sotto per non prendere gli ultimi 10 e 30 valori rispettivamente ma solo 1 o 3
+      //o meglio, andrebbe bene se volessi mostrare solo il LAeq ogni 10 o 30 minutoi, ma dovrei ricordarmi di modificare la parte sotto per non prendere gli ultimi 10 e 30 valori rispettivamente ma solo 1 o 3
     
       const url = `https://docs.google.com/spreadsheets/d/1-ChzNRGrvaDVfi1l1Z-wSCbsDCq4RbXu/gviz/tq?tqx=responseHandler:myCallback`
 
-      // ricorda che il link non è semplicemente copiato dal file google drive, ma è modificato: la parte finale andrà modificata e sostituita da /gviz/tq... eccetera
+      //ricorda che il link non è semplicemente copiato dal file google drive, ma è modificato: la parte finale andrà modificata e sostituita da /gviz/tq... eccetera
+      //Questo URL include il percorso /gviz/tq?tqx=responseHandler:myCallback, che indica che i dati dovrebbero essere restituiti in un formato JSON e gestiti dalla funzione myCallback
 
       const script = document.createElement('script');
       script.src = url;
@@ -55,8 +44,10 @@
       window.myCallback = function(data) {        
         const rows = data.table.rows;
         const lastRow = rows[rows.length - 1];
-        const lastValue = lastRow.c[1].v;
+        const lastValue = lastRow.c[1].v; //accede al valore contenuto nella seconda cella (c[1]); v indica che ne prendiamo il valore
         
+        //scrivi l'ultimo valore, cioè il LAeq dell'ultimo minuto
+        document.getElementById('min1').innerHTML=lastValue.toFixed(1);
 
         //fai la media delle ultime 10 righe
         if (rows.length -5>=10){
@@ -86,8 +77,10 @@
           document.getElementById('min30').innerHTML="ND";
         }
 
-        document.getElementById('min1').innerHTML=lastValue.toFixed(1);
+        
       };
     }
   </script>
+
+  <a href="grafico.html">Grafico</a>
  </html>

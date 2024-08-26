@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafico dei Dati</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #myChart {
+            width: 80rem;
+            height: 400px;
+        }
+    </style>
+</head>
+<body onload="handleClientLoad()">
+    <h1>Grafico dei Dati</h1>
+    <label for="numRows">Numero di valori da mostrare:</label>
+    <input type="number" id="numRows" value="100" min="1" max="5000" onchange="updateChart()">
+    <canvas id="myChart"></canvas>
+    
+    <script>
+        let chart;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            getLastNRowsFromGoogleSheet();
+            setInterval(getLastNRowsFromGoogleSheet, 100); // ripeti ogni 30 secondi
+        });
+
+        function getLastNRowsFromGoogleSheet() {
+            const url = `https://docs.google.com/spreadsheets/d/1-ChzNRGrvaDVfi1l1Z-wSCbsDCq4RbXu/gviz/tq?tqx=responseHandler:myCallback`;
+            const script = document.createElement('script');
+            script.src = url;
+            document.body.appendChild(script);
+
+            window.myCallback = function(data) {
+                const rows = data.table.rows;
+                const numRows = parseInt(document.getElementById('numRows').value, 10);
+                const labels = [];
+                const values = [];
+
+                // Prepara i dati per il grafico
+                for (let i = Math.max(rows.length - numRows, 0); i < rows.length; i++) {
+                    const value = rows[i].c[1].v;
+                    const label = rows[i].c[0].v; // Assumendo che la colonna A contenga le etichette temporali
+                    labels.push(label);
+                    values.push(parseFloat(value));
+                }
+
+                // Aggiorna il grafico
+                updateChart(labels, values);
+            };
+        }
+
+        function updateChart(labels, values) {
+            if (chart) {
+                chart.destroy();
+            }
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Valori',
+                        data: values,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tempo'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Valore'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
