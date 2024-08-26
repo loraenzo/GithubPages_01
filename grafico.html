@@ -28,7 +28,7 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             getLastNRowsFromGoogleSheet();
-            setInterval(getLastNRowsFromGoogleSheet, 100); // ripeti ogni 30 secondi
+            setInterval(getLastNRowsFromGoogleSheet, 60000); // ripeti ogni 60 secondi
         });
 
         function getLastNRowsFromGoogleSheet() {
