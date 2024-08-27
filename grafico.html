@@ -3,99 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grafico dei Dati</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JS CDN -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #myChart {
-            width: 100%;
-            height: 400px;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1"></script>
+
+
+    <title>Grafico dei Dati</title>
+    
+
 </head>
 <body onload="handleClientLoad()">
-    <h1>Grafico dei Dati</h1>
-    <label for="numRows">Numero di valori da mostrare:</label>
-    <input type="number" id="numRows" value="100" min="1" max="5000" onchange="updateChart()">
-    <button id="refreshButton">Aggiorna Grafico</button>
-    <canvas id="myChart"></canvas>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container-fluid px-4"> <!-- Cambia il valore se vuoi variare il padding sia dx che sx -->
+            <a class="navbar-brand" href="index.html"><h2 class="spaced-logo"><span class="text-danger">g</span>  a  m  a  s  t  u  d  i  o</h2></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item px-3">
+                        <a class="nav-link text-light" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link text-light" href="https://www.example.com" target="_blank">Chi siamo</a>
+                    </li>                        
+                    <li class="nav-item dropdown px-3">
+                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown">Aree</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="nav-link text-dark text-center py-3" href="https://www.example.com" target="_blank">Link2</a></li>
+                            <li><a class="nav-link text-dark text-center py-3" href="https://www.example.com" target="_blank">Link2</a></li>
+                            <li><a class="nav-link text-dark text-center py-3" href="https://www.example.com" target="_blank">Link3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link text-light" href="https://www.example.com" target="_blank">Contatti</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+      </nav>
+
+    <div class="grafico">
+        <h1>Grafico dei Dati</h1>
+        <label for="numRows">Numero di valori da mostrare:</label>
+        <input type="number" id="numRows" value="100" min="1" max="5000" onchange="updateChart()">
+        <button id="refreshButton">Aggiorna Grafico</button>
+        <canvas id="myChart"></canvas>
+    </div>
     
-    <script>
-        let chart;
-
-        document.addEventListener("DOMContentLoaded", function() {
-            // Disabilitato il refresh automatico
-            getLastNRowsFromGoogleSheet();
-            // setInterval(getLastNRowsFromGoogleSheet, 1000); // ripeti ogni 1 secondo
-            document.getElementById('refreshButton').addEventListener('click', getLastNRowsFromGoogleSheet);
-        });
-
-        function getLastNRowsFromGoogleSheet() {
-            const url = `https://docs.google.com/spreadsheets/d/1-ChzNRGrvaDVfi1l1Z-wSCbsDCq4RbXu/gviz/tq?tqx=responseHandler:myCallback`;
-            const script = document.createElement('script');
-            script.src = url;
-            document.body.appendChild(script);
-
-            window.myCallback = function(data) {
-                const rows = data.table.rows;
-                const numRows = parseInt(document.getElementById('numRows').value, 10);
-                const labels = [];
-                const values = [];
-
-                // Prepara i dati per il grafico
-                for (let i = Math.max(rows.length - numRows, 0); i < rows.length; i++) {
-                    const value = rows[i].c[1].v;
-                    const label = rows[i].c[0].v; // Assumendo che la colonna A contenga le etichette temporali
-                    labels.push(label);
-                    values.push(parseFloat(value));
-                }
-
-                // Aggiorna il grafico
-                updateChart(labels, values);
-            };
-        }
-
-        function updateChart(labels, values) {
-            if (chart) {
-                chart.destroy();
-            }
-
-            const ctx = document.getElementById('myChart').getContext('2d');
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Valori',
-                        data: values,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: false,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Tempo'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Valore'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    </script>
+    <script src="scriptGrafico.js"></script>
 </body>
 </html>
