@@ -147,6 +147,11 @@ function updateChart(labels, values) {
         },
         options: {
             responsive: true,
+            plugins: {
+                legend: {
+                    display: false // Questa opzione nasconde la legenda
+                }
+            },
             scales: {
                 x: {
                     title: {

@@ -56,14 +56,10 @@
         </div>
       </nav>
 
-    <div class="grafico">
+    <div class="grafico my-5">
         <h1>Grafico dei Dati</h1>
         <label for="numRows">Numero di valori da mostrare:</label>
-        <input type="number" id="numRows" value="5000" min="1" max="5000" onchange="updateChart()">
-        <label for="startDate">Data Inizio:</label>
-        <input type="date" id="startDate">
-        <label for="endDate">Data Fine:</label>
-        <input type="date" id="endDate">
+        <input type="number" id="numRows" value="1000" min="1" max="1000" onchange="updateChart()">
         <button id="refreshButton">Aggiorna Grafico</button>
         <canvas id="myChart"></canvas>
     </div>
