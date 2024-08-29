@@ -35,24 +35,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.myCallback = function(data) {
         const rows = data.table.rows;
-        console.log("Numero totale di righe: ", rows.length); // Log del numero totale di righe
+        //console.log("Numero totale di righe: ", rows.length); // Log del numero totale di righe
     
-        for (let i = 0; i < rows.length; i++) {
-            console.log(`Riga ${i}: `, rows[i].c[1]?.v); // Log per ogni riga
-        }
+        //for (let i = 0; i < rows.length; i++) {
+        //   console.log(`Riga ${i}: `, rows[i].c[1]?.v); // Log per ogni riga
+        //}
     
         const lastRow = rows[rows.length - 1];
         const lastValue = lastRow.c[1].v;
         document.getElementById('min1').innerHTML = lastValue.toFixed(1);
     
         // Media delle ultime 10 righe
-        if (rows.length >= 10) { // Modificato il controllo
-            console.log("Calcolo la media delle ultime 10 righe."); // Log di debug
+        if (rows.length >= 10) { // Modificato il controllo, prima era if row.length - 5
+            //console.log("Calcolo la media delle ultime 10 righe."); // Log di debug
             var sum10 = 0;
             for (var i = rows.length - 10; i < rows.length; i++) {
                 valore = rows[i].c[1].v;
                 sum10 += 10**(0.1 * valore);
-                console.log(`Riga ${i}: Valore ${valore}`); // Log del valore per ogni riga
+                //console.log(`Riga ${i}: Valore ${valore}`); // Log del valore per ogni riga
             }
             avg10 = 10 * (Math.log10(sum10 / 10));
             document.getElementById('min10').innerHTML = avg10.toFixed(1);
@@ -62,13 +62,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     
         // Media delle ultime 30 righe
-        if (rows.length >= 30) { // Modificato il controllo
-            console.log("Calcolo la media delle ultime 30 righe."); // Log di debug
+        if (rows.length >= 30) { // Modificato il controllo, prima era if row.length - 5
+            //console.log("Calcolo la media delle ultime 30 righe."); // Log di debug
             var sum30 = 0;
             for (var i = rows.length - 30; i < rows.length; i++) {
                 valore = rows[i].c[1].v;
                 sum30 += 10**(0.1 * valore);
-                console.log(`Riga ${i}: Valore ${valore}`); // Log del valore per ogni riga
+                //console.log(`Riga ${i}: Valore ${valore}`); // Log del valore per ogni riga
             }
             avg30 = 10 * (Math.log10(sum30 / 30));
             document.getElementById('min30').innerHTML = avg30.toFixed(1);
