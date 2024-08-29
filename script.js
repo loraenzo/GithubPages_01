@@ -1,5 +1,10 @@
 
-// INSERISCI QUI IL LINK AI FOGLI GOOGLE AGGIORNATI
+
+
+// INSERISCI QUI I LINK
+
+
+
 
 // Inserisci url del file UnMinuto
 const url = `https://docs.google.com/spreadsheets/d/12yzd8zvhqWtW-4MbFMiN3hbTOXJ9sYh4/gviz/tq?tqx=responseHandler:myCallback`;
@@ -7,13 +12,16 @@ const url = `https://docs.google.com/spreadsheets/d/12yzd8zvhqWtW-4MbFMiN3hbTOXJ
 // Inserisci url del file DieciMinuti
 const urlGrafico = `https://docs.google.com/spreadsheets/d/134eBRtcrxu3ZCSnbGWcJBWxwWCkAWLwc/gviz/tq?tqx=responseHandler:myCallback`;
 
-//const url = `https://docs.google.com/spreadsheets/d/1-4rdXZ7kTRsVGQJ2H4JChhEl4PlmJE42/gviz/tq?tqx=responseHandler:myCallback`;
-//questo link sopra è inutile, perché fa la media degli ultimi 1, 10 o 30 valori per mostrare i dati. Peccato che sia il file dove vengono già salvati i LAeq ogni 10 min
-//o meglio, andrebbe bene se volessi mostrare solo il LAeq ogni 10 o 30 minutoi, ma dovrei ricordarmi di modificare la parte sotto per non prendere gli ultimi 10 e 30 valori
-//rispettivamente, ma solo 1 o 3
-//ricorda che il link non è semplicemente copiato dal file google drive, ma è modificato: la parte finale andrà modificata e sostituita da /gviz/tq... eccetera
+
+//ricorda che i link sopra non sono semplicemente copiati dal file google drive, ma sono modificati: la parte finale andrà modificata e sostituita da /gviz/tq... eccetera
 //Questo URL include il percorso /gviz/tq?tqx=responseHandler:myCallback, che indica che i dati dovrebbero essere restituiti in un formato JSON e gestiti
 //dalla funzione myCallback
+
+
+
+
+//  ----        RICORDA DI AGGIORNARE ANCHE I LINK DELLA CARTELLA ARCHIVIO      -----
+
 
 
 
