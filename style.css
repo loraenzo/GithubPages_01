@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Arial Narrow", Arial, sans-serif;
     color: white;
     text-align: center;
     background-color: black;
@@ -34,3 +34,28 @@ a {
     color: inherit;
     text-decoration: none;
   }
+
+.nav-item {
+    font-family: Arial, sans-serif; /* sovrascrivi il font impostato per tutto il body solo per gli elementi del menu */
+}
+
+.spaced-logo {
+    letter-spacing: 0.1em; /* Regola la distanza tra le lettere */
+}
+
+.spaced-logo span {
+    display: inline-block; /* Permette di applicare il margine */
+    margin-right: 0.1em; /* Regola il margine tra le lettere */
+}
+
+.primalettera-rossa::first-letter {
+    color: red; /* Colore della prima lettera */
+}
+
+.primalettera-blu::first-letter {
+    color: rgb(55, 55, 210); /* Colore della prima lettera */
+}
+
+.primalettera-verde::first-letter {
+    color: green; /* Colore della prima lettera */
+}
