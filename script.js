@@ -1,5 +1,5 @@
 
-// INSERISCI QUI IL LINK AL FOGLIO GOOGLE AGGIORNATO
+// INSERISCI QUI IL LINK AI FOGLI GOOGLE AGGIORNATI
 
 // Inserisci url del file UnMinuto
 const url = `https://docs.google.com/spreadsheets/d/12yzd8zvhqWtW-4MbFMiN3hbTOXJ9sYh4/gviz/tq?tqx=responseHandler:myCallback`;
