@@ -2,10 +2,10 @@
 // INSERISCI QUI IL LINK AL FOGLIO GOOGLE AGGIORNATO
 
 // Inserisci url del file UnMinuto
-const url = `https://docs.google.com/spreadsheets/d/12D5S3N1GpbqjHbNstLqwTbTZO_mrDv8C/gviz/tq?tqx=responseHandler:myCallback`;
+const url = `https://docs.google.com/spreadsheets/d/12yzd8zvhqWtW-4MbFMiN3hbTOXJ9sYh4/gviz/tq?tqx=responseHandler:myCallback`;
 
 // Inserisci url del file DieciMinuti
-const urlGrafico = `https://docs.google.com/spreadsheets/d/12Do2LZ2ugTLXGXgKxxEL7czgrpRsogiZ/gviz/tq?tqx=responseHandler:myCallback`;
+const urlGrafico = `https://docs.google.com/spreadsheets/d/134eBRtcrxu3ZCSnbGWcJBWxwWCkAWLwc/gviz/tq?tqx=responseHandler:myCallback`;
 
 //const url = `https://docs.google.com/spreadsheets/d/1-4rdXZ7kTRsVGQJ2H4JChhEl4PlmJE42/gviz/tq?tqx=responseHandler:myCallback`;
 //questo link sopra è inutile, perché fa la media degli ultimi 1, 10 o 30 valori per mostrare i dati. Peccato che sia il file dove vengono già salvati i LAeq ogni 10 min
