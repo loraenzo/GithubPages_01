@@ -23,11 +23,15 @@ const urlGrafico = `https://docs.google.com/spreadsheets/d/134eBRtcrxu3ZCSnbGWcJ
 //  ----        RICORDA DI AGGIORNARE ANCHE I LINK DELLA CARTELLA ARCHIVIO      -----
 
 
+//  ----        SE CAMBI GLI URL DELLE PèAGINE, SOSTITUISCILI ANCHE NEGLI IF CHE RACCHIUDONO I DUE PEZZI DI CODICE SOTTO      -----
+
+
 
 
 // VALORI TEMPO REALE
 
 
+if (window.location.pathname === '/datiExcel.html') {
 
 document.addEventListener("DOMContentLoaded", function() {      
     getLastNRowsFromGoogleSheetForDati();
@@ -88,9 +92,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
     
   }
-
+}
 
 // GRAFICO
+
+
+else if (window.location.pathname === '/grafico.html') {
 
 let chart;
 
@@ -188,4 +195,6 @@ function updateChart(labels, values) {
             }
         }
     });
+}
+
 }
