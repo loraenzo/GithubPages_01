@@ -31,7 +31,7 @@ const urlGrafico = `https://docs.google.com/spreadsheets/d/134eBRtcrxu3ZCSnbGWcJ
 // VALORI TEMPO REALE
 
 
-if (window.location.pathname === '/datiExcel.html') {
+if (window.location.pathname === '/GithubPages_01/datiExcel.html') {
 
 document.addEventListener("DOMContentLoaded", function() {      
     getLastNRowsFromGoogleSheetForDati();
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // GRAFICO
 
 
-else if (window.location.pathname === '/grafico.html') {
+else if (window.location.pathname === '/GithubPages_01/grafico.html') {
 
 let chart;
 
