@@ -6,9 +6,6 @@
 
 
 
-// Inserisci url del file UnMinuto
-const url = `https://docs.google.com/spreadsheets/d/12yzd8zvhqWtW-4MbFMiN3hbTOXJ9sYh4/gviz/tq?tqx=responseHandler:myCallback`;
-
 // Inserisci url del file DieciMinuti
 const urlGrafico = `https://docs.google.com/spreadsheets/d/134eBRtcrxu3ZCSnbGWcJBWxwWCkAWLwc/gviz/tq?tqx=responseHandler:myCallback`;
 
